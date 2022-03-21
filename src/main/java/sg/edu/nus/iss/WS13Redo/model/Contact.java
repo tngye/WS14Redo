@@ -81,6 +81,7 @@ public class Contact {
 
     public void saveContact(Contact contact, Environment env) throws IOException {
         String argPath = env.getProperty("dataDir");
+        if(argPath != null){
         FileWriter fileWriter = new FileWriter(argPath + "/" + id, Charset.forName("utf-8"));
         PrintWriter pw = null;
         try {
@@ -91,12 +92,14 @@ public class Contact {
         } finally {
             pw.close();
         }
+    }
 
     }
 
     public Contact getContactById(Contact contact, String contactId, Environment env) throws IOException{
         Contact cResp = new Contact();
         String argPath = env.getProperty("dataDir");
+        if (argPath !=null){
         Path filepath = Paths.get(argPath +"/" + contactId);
         if(Files.exists(filepath)){
             List<String> stringList = Files.readAllLines(filepath,  Charset.forName("utf-8"));
@@ -106,7 +109,9 @@ public class Contact {
         }else{
             return null;
         }
+    }
         return cResp;
+    
         
     }
 
