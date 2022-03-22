@@ -1,4 +1,4 @@
-package sg.edu.nus.iss.WS13Redo;
+package sg.edu.nus.iss.WS14Redo;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -11,10 +11,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Ws13RedoApplication {
+public class Ws14RedoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(Ws13RedoApplication.class);
+		SpringApplication app = new SpringApplication(Ws14RedoApplication.class);
 		String dataDir = null;
 
 		ApplicationArguments cliOpts = new DefaultApplicationArguments(args);

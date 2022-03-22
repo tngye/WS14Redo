@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import sg.edu.nus.iss.WS13Redo.model.Contact;
+import sg.edu.nus.iss.WS14Redo.model.Contact;
 
 @SpringBootTest
-class Ws13RedoApplicationTests {
+class Ws14RedoApplicationTests {
 
 	@Test
 	void contextLoads() {

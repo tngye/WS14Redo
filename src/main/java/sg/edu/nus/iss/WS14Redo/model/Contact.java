@@ -1,8 +1,9 @@
-package sg.edu.nus.iss.WS13Redo.model;
+package sg.edu.nus.iss.WS14Redo.model;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,7 +14,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
-public class Contact {
+public class Contact implements Serializable{
 
     private String id;
     private String name;

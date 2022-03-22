@@ -1,4 +1,4 @@
-package sg.edu.nus.iss.WS13Redo.controllers;
+package sg.edu.nus.iss.WS14Redo.controllers;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,12 +26,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import sg.edu.nus.iss.WS13Redo.model.Contact;
+import sg.edu.nus.iss.WS14Redo.Repository.ContactsRedisRepo;
+import sg.edu.nus.iss.WS14Redo.model.Contact;
 
 @Controller
 @RequestMapping("/contact")
 public class ContactController {
     @Autowired Environment env;
+    @Autowired ContactsRedisRepo svc;
     
     
     @PostMapping
@@ -48,6 +50,7 @@ public class ContactController {
         contact.setEmail(email);
         contact.setName(name);
         contact.setPhone(Integer.parseInt(phone));
+        svc.save(contact);
         model.addAttribute("contact", contact);
 
         contact.saveContact(contact, env);
@@ -59,14 +62,24 @@ public class ContactController {
     @GetMapping("/{id}")
     public String showContactById(@PathVariable String id, Model model) throws IOException{
         String contactId = id;
-        Contact contact = new Contact();
         String nullMsg = "Not Found!";
-        contact = contact.getContactById(contact, contactId, env);
-        if(contact != null){
-            model.addAttribute("contact", contact);
-        }else{
-            model.addAttribute("nullMsg", nullMsg);
-        }
+        Contact ctc = svc.findById(contactId);
+
+        if(ctc != null){
+                 model.addAttribute("contact", ctc);
+             }else{
+                 model.addAttribute("nullMsg", nullMsg);
+             }
+        
+        model.addAttribute("contact", ctc);
+        // Contact contact = new Contact();
+        // String nullMsg = "Not Found!";
+        // contact = contact.getContactById(contact, contactId, env);
+        // if(contact != null){
+        //     model.addAttribute("contact", contact);
+        // }else{
+        //     model.addAttribute("nullMsg", nullMsg);
+        // }
         return "contactlist";
     }
 }
